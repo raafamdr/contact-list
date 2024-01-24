@@ -9,7 +9,8 @@
     <string name="az">A-Z</string>
     <string name="za">Z-A</string>
     <string name="add_contact">Add contact</string>
-    <string name="close">close</string>
+    <string name="close">Close</string>
+    <string name="navigate_up">Navigate up</string>
     <string name="save_contact">Save contact</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
