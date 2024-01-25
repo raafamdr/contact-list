@@ -9,6 +9,7 @@
     <string name="az">A-Z</string>
     <string name="za">Z-A</string>
     <string name="add_contact">Add contact</string>
+    <string name="contact_name">%1$s %2$s</string>
     <string name="close">Close</string>
     <string name="navigate_up">Navigate up</string>
     <string name="save_contact">Save contact</string>
@@ -27,5 +28,6 @@
     <string name="delete_contact">Delete contact?</string>
     <string name="delete_supporting_text">Contact will be permanently removed from your device.</string>
     <string name="contact_info">Contact info</string>
+    <string name="location">%1$s - %2$s, %3$s</string>
     <string name="edit_contact">Edit contact</string>
 </resources>
