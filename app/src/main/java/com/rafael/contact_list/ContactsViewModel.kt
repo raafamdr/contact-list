@@ -107,6 +107,15 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
     fun areFieldsNotBlank(vararg fields: String): Boolean {
         return fields.all { it.isNotBlank() }
     }
+
+    fun searchContacts(query: String): List<Contact> {
+        val allContacts = allContacts
+        val filteredContacts = allContacts.value!!.filter { contact ->
+            contact.firstName.contains(query, ignoreCase = true)
+        }
+
+        return filteredContacts
+    }
 }
 
 class ContactsViewModelFactory(private val contactDao: ContactDao) : ViewModelProvider.Factory {

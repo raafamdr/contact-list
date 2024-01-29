@@ -6,12 +6,26 @@
         android:contentDescription="@string/search"
         android:icon="@drawable/ic_search"
         android:title="@string/search"
-        app:showAsAction="ifRoom" />
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="collapseActionView|ifRoom" />
 
     <item
         android:id="@+id/sort"
         android:contentDescription="@string/sort_by"
         android:icon="@drawable/ic_sort"
         android:title="@string/sort_by"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/az"
+                android:contentDescription="@string/az"
+                android:title="@string/az"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/za"
+                android:contentDescription="@string/za"
+                android:title="@string/za"
+                app:showAsAction="never" />
+        </menu>
+    </item>
 </menu>

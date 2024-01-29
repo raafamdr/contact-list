@@ -5,14 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.rafael.contact_list.data.Contact
 import com.rafael.contact_list.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), SearchView.OnQueryTextListener {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapter: ContactListAdapter
+    private var contacts: List<Contact> = emptyList()
 
     private val viewModel: ContactsViewModel by activityViewModels {
         ContactsViewModelFactory(
@@ -32,7 +36,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ContactListAdapter {
+        adapter = ContactListAdapter {
             val action = HomeFragmentDirections.actionHomeFragmentToContactDetailFragment(it.id)
             this.findNavController().navigate(action)
         }
@@ -59,12 +63,22 @@ class HomeFragment : Fragment() {
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.search -> {
-                    // TODO search feature
+                    val searchView = menuItem.actionView as SearchView
+                    searchView.setOnQueryTextListener(this@HomeFragment)
                     true
                 }
 
-                R.id.sort -> {
-                    // TODO sort feature
+                R.id.az -> {
+                    contacts = viewModel.allContacts.value ?: emptyList()
+                    contacts = contacts.sortedBy { it.firstName }
+                    adapter.submitList(contacts)
+                    true
+                }
+
+                R.id.za -> {
+                    contacts = viewModel.allContacts.value ?: emptyList()
+                    contacts = contacts.sortedByDescending { it.firstName }
+                    adapter.submitList(contacts)
                     true
                 }
 
@@ -76,5 +90,23 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return false
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        filterList(query)
+        return true
+    }
+
+    private fun filterList(query: String?) {
+        contacts = if (query.isNullOrEmpty()) {
+            viewModel.allContacts.value ?: emptyList()
+        } else {
+            viewModel.searchContacts(query)
+        }
+        adapter.submitList(contacts)
     }
 }
