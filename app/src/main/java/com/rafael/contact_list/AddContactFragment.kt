@@ -9,12 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.rafael.contact_list.data.Contact
 import com.rafael.contact_list.databinding.FragmentAddContactBinding
 
@@ -99,6 +102,14 @@ class AddContactFragment : Fragment() {
             )
             val action = AddContactFragmentDirections.actionAddContactFragmentToHomeFragment()
             findNavController().navigate(action)
+            Toast.makeText(requireContext(), R.string.contact_added, Toast.LENGTH_SHORT).show()
+        } else {
+            validateField(binding.labelFirstName, binding.textFirstName)
+            validateField(binding.labelLastName, binding.textLastName)
+            validateField(binding.labelPhone, binding.textPhone)
+
+            Toast.makeText(requireContext(), R.string.fill_all_required_fields, Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
@@ -117,6 +128,14 @@ class AddContactFragment : Fragment() {
             )
             val action = AddContactFragmentDirections.actionAddContactFragmentToHomeFragment()
             findNavController().navigate(action)
+            Toast.makeText(requireContext(), R.string.contact_updated, Toast.LENGTH_SHORT).show()
+        } else {
+            validateField(binding.labelFirstName, binding.textFirstName)
+            validateField(binding.labelLastName, binding.textLastName)
+            validateField(binding.labelPhone, binding.textPhone)
+
+            Toast.makeText(requireContext(), R.string.fill_all_required_fields, Toast.LENGTH_SHORT)
+                .show()
         }
     }
 
@@ -126,6 +145,14 @@ class AddContactFragment : Fragment() {
             binding.textLastName.text.toString(),
             binding.textPhone.text.toString(),
         )
+    }
+
+    private fun validateField(textInputLayout: TextInputLayout, editText: TextInputEditText) {
+        if (editText.text!!.isEmpty()) {
+            textInputLayout.error = getString(R.string.required)
+        } else {
+            textInputLayout.error = null
+        }
     }
 
     private fun bind(contact: Contact) {
