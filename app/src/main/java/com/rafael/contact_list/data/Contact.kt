@@ -16,5 +16,6 @@ data class Contact(
     val address: String,
     val city: String,
     val area: String,
-    val zip: String
+    val zip: String,
+    val imagePath: String
 )

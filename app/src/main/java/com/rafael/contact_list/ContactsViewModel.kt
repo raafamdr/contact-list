@@ -41,7 +41,8 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
         address: String,
         city: String,
         area: String,
-        zip: String
+        zip: String,
+        imagePath: String
     ): Contact {
         return Contact(
             firstName = firstName,
@@ -51,6 +52,7 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
             city = city,
             area = area,
             zip = zip,
+            imagePath = imagePath
         )
     }
 
@@ -62,7 +64,8 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
         address: String,
         city: String,
         area: String,
-        zip: String
+        zip: String,
+        imagePath: String
     ): Contact {
         return Contact(
             id = contactId,
@@ -73,6 +76,7 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
             city = city,
             area = area,
             zip = zip,
+            imagePath = imagePath
         )
     }
 
@@ -84,10 +88,21 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
         address: String,
         city: String,
         area: String,
-        zip: String
+        zip: String,
+        imagePath: String
     ) {
         val updatedContact =
-            getUpdatedContactEntry(contactId, firstName, lastName, phone, address, city, area, zip)
+            getUpdatedContactEntry(
+                contactId,
+                firstName,
+                lastName,
+                phone,
+                address,
+                city,
+                area,
+                zip,
+                imagePath
+            )
         updateContact(updatedContact)
     }
 
@@ -98,9 +113,11 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
         address: String,
         city: String,
         area: String,
-        zip: String
+        zip: String,
+        imagePath: String
     ) {
-        val newContact = getNewContactEntry(firstName, lastName, phone, address, city, area, zip)
+        val newContact =
+            getNewContactEntry(firstName, lastName, phone, address, city, area, zip, imagePath)
         insertContact(newContact)
     }
 

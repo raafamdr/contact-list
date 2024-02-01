@@ -19,11 +19,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
+            app:navigationContentDescription="@string/navigate_up"
             app:navigationIcon="@drawable/ic_close"
             app:title="@string/save_contact"
-            app:navigationContentDescription="@string/navigate_up"
             app:titleTextColor="?attr/colorOnSurface" />
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/img_account"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="8dp"
+        android:adjustViewBounds="false"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        app:shapeAppearance="@style/circleImageView" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shape_camera"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@color/md_theme_primary"
+        app:layout_constraintBottom_toBottomOf="@id/img_account"
+        app:layout_constraintEnd_toEndOf="@id/img_account"
+        app:shapeAppearance="@style/circleImageView" />
+
+    <ImageView
+        android:id="@+id/img_camera"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_camera"
+        app:layout_constraintBottom_toBottomOf="@id/shape_camera"
+        app:layout_constraintEnd_toEndOf="@id/shape_camera"
+        app:layout_constraintStart_toStartOf="@id/shape_camera"
+        app:layout_constraintTop_toTopOf="@id/shape_camera" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -44,7 +78,7 @@
         android:hint="@string/first_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar">
+        app:layout_constraintTop_toBottomOf="@id/img_account">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_first_name"
@@ -180,7 +214,7 @@
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:text="@string/cancel"
         app:layout_constraintStart_toStartOf="@id/label_area"
         app:layout_constraintTop_toBottomOf="@id/label_area" />
@@ -189,7 +223,7 @@
         android:id="@+id/btn_save"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="@id/label_zip"
         app:layout_constraintTop_toBottomOf="@id/label_zip" />

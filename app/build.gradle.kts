@@ -45,11 +45,17 @@ dependencies {
     val lifecycleVersion = "2.7.0"
     val roomVersion = "2.6.1"
     val navVersion = "2.7.6"
+    val activityVersion = "1.8.2"
+    val coilVersion = "2.5.0"
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:$materialVersion")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.activity:activity-ktx:$activityVersion")
+
+    // Coil
+    implementation("io.coil-kt:coil:$coilVersion")
 
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")

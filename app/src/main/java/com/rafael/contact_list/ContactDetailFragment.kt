@@ -1,13 +1,16 @@
 package com.rafael.contact_list
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import coil.load
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.rafael.contact_list.data.Contact
 import com.rafael.contact_list.databinding.FragmentContactDetailBinding
@@ -77,6 +80,7 @@ class ContactDetailFragment : Fragment() {
             textAddress.text = contact.address
             textLocation.text =
                 resources.getString(R.string.location, contact.city, contact.area, contact.zip)
+            imgUserPhoto.load(contact.imagePath)
         }
     }
 
