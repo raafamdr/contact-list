@@ -42,7 +42,7 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
         city: String,
         area: String,
         zip: String,
-        imagePath: String
+        imagePath: String?
     ): Contact {
         return Contact(
             firstName = firstName,
@@ -65,7 +65,7 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
         city: String,
         area: String,
         zip: String,
-        imagePath: String
+        imagePath: String?
     ): Contact {
         return Contact(
             id = contactId,
@@ -89,7 +89,7 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
         city: String,
         area: String,
         zip: String,
-        imagePath: String
+        imagePath: String?
     ) {
         val updatedContact =
             getUpdatedContactEntry(
@@ -114,7 +114,7 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
         city: String,
         area: String,
         zip: String,
-        imagePath: String
+        imagePath: String?
     ) {
         val newContact =
             getNewContactEntry(firstName, lastName, phone, address, city, area, zip, imagePath)

@@ -1,6 +1,8 @@
 package com.rafael.contact_list
 
 import android.content.Intent
+import android.graphics.drawable.Animatable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -12,10 +14,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import coil.Coil
 import coil.load
+import coil.request.ImageRequest
+import coil.transition.TransitionTarget
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.rafael.contact_list.data.Contact
@@ -32,7 +38,7 @@ class AddContactFragment : Fragment() {
         )
     }
     lateinit var contact: Contact
-    private lateinit var uri: Uri
+    private var imagePath: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,12 +66,13 @@ class AddContactFragment : Fragment() {
         val pickMedia =
             registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
                 if (uri != null) {
-                    Log.d("PhotoPicker", "Selected URI: $uri")
-                    this.uri = uri
-                    binding.imgAccount.load(uri)
-
                     val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
                     requireContext().contentResolver.takePersistableUriPermission(uri, flag)
+
+                    binding.imgAccount.load(uri)
+                    this.imagePath = uri.toString()
+
+                    Log.d("PhotoPicker", "Selected URI: $uri")
                 } else {
                     Log.d("PhotoPicker", "No media selected")
                 }
@@ -98,7 +105,7 @@ class AddContactFragment : Fragment() {
                 binding.textCity.text.toString(),
                 binding.textArea.text.toString(),
                 binding.textZip.text.toString(),
-                uri.toString()
+                imagePath
             )
             val action = AddContactFragmentDirections.actionAddContactFragmentToHomeFragment()
             findNavController().navigate(action)
@@ -124,7 +131,7 @@ class AddContactFragment : Fragment() {
                 this.binding.textCity.text.toString(),
                 this.binding.textArea.text.toString(),
                 this.binding.textZip.text.toString(),
-                uri.toString()
+                imagePath
             )
             val action = AddContactFragmentDirections.actionAddContactFragmentToHomeFragment()
             findNavController().navigate(action)
@@ -156,6 +163,7 @@ class AddContactFragment : Fragment() {
     }
 
     private fun bind(contact: Contact) {
+
         binding.apply {
             textFirstName.setText(contact.firstName, TextView.BufferType.SPANNABLE)
             textLastName.setText(contact.lastName, TextView.BufferType.SPANNABLE)
@@ -164,10 +172,37 @@ class AddContactFragment : Fragment() {
             textCity.setText(contact.city, TextView.BufferType.SPANNABLE)
             textArea.setText(contact.area, TextView.BufferType.SPANNABLE)
             textZip.setText(contact.zip, TextView.BufferType.SPANNABLE)
-            imgAccount.load(contact.imagePath)
+            contact.imagePath?.let {
+                if (it.isNotEmpty()) {
+                    val request = ImageRequest.Builder(requireContext())
+                        .data(it)
+                        .error(ContextCompat.getDrawable(requireContext(), R.drawable.ic_account))
+                        .crossfade(600)
+                        .target(createImageTarget())
+                        .build()
+                    Coil.imageLoader(requireContext()).enqueue(request)
+                    imagePath = contact.imagePath
+                }
+            }
             btnSave.setOnClickListener {
                 updateContact()
             }
+        }
+    }
+
+    private fun createImageTarget() = object : TransitionTarget {
+        override val drawable get() = binding.imgAccount.drawable
+        override val view get() = binding.imgAccount
+
+        override fun onSuccess(result: Drawable) {
+            binding.imgAccount.setImageDrawable(result)
+            (result as? Animatable)?.start()
+        }
+
+        override fun onError(error: Drawable?) {
+            binding.imgAccount.setImageDrawable(error)
+            Toast.makeText(requireContext(), R.string.image_not_available, Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }

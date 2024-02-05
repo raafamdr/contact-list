@@ -31,6 +31,9 @@
     <string name="delete_supporting_text">Contact will be permanently removed from your device.</string>
     <string name="contact_info">Contact info</string>
     <string name="location">%1$s - %2$s, %3$s</string>
+    <string name="no_zip_location">%1$s - %2$s</string>
+    <string name="not_available">N/A</string>
+    <string name="image_not_available">Image could not be loaded</string>
     <string name="edit_contact">Edit contact</string>
     <string name="contact_added">Contact added to the list</string>
     <string name="contact_updated">Contact details updated</string>
