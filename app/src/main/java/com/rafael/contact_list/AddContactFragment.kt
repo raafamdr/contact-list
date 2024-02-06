@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -38,7 +39,6 @@ class AddContactFragment : Fragment() {
         )
     }
     lateinit var contact: Contact
-    private var imagePath: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,23 +63,32 @@ class AddContactFragment : Fragment() {
             }
         }
 
-        val pickMedia =
-            registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-                if (uri != null) {
-                    val flag = Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    requireContext().contentResolver.takePersistableUriPermission(uri, flag)
-
-                    binding.imgAccount.load(uri)
-                    this.imagePath = uri.toString()
-
-                    Log.d("PhotoPicker", "Selected URI: $uri")
-                } else {
-                    Log.d("PhotoPicker", "No media selected")
-                }
+        viewModel.imagePath.observe(this.viewLifecycleOwner) { imagePath ->
+            if (imagePath != null) {
+                val request = ImageRequest.Builder(requireContext())
+                    .data(imagePath)
+                    .error(ContextCompat.getDrawable(requireContext(), R.drawable.ic_account))
+                    .crossfade(600)
+                    .target(createImageTarget())
+                    .build()
+                Coil.imageLoader(requireContext()).enqueue(request)
+            } else {
+                binding.imgAccount.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_account
+                    )
+                )
             }
+        }
 
-        binding.shapeCamera.setOnClickListener {
-            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        binding.apply {
+            shapeCamera.setOnClickListener {
+                findNavController().navigate(R.id.action_addContactFragment_to_modalBottomSheet)
+            }
+            imgAccount.setOnClickListener {
+                findNavController().navigate(R.id.action_addContactFragment_to_modalBottomSheet)
+            }
         }
 
         binding.btnCancel.setOnClickListener {
@@ -92,6 +101,7 @@ class AddContactFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        viewModel.updateImagePath(null)
         _binding = null
     }
 
@@ -105,7 +115,7 @@ class AddContactFragment : Fragment() {
                 binding.textCity.text.toString(),
                 binding.textArea.text.toString(),
                 binding.textZip.text.toString(),
-                imagePath
+                viewModel.imagePath.value,
             )
             val action = AddContactFragmentDirections.actionAddContactFragmentToHomeFragment()
             findNavController().navigate(action)
@@ -131,7 +141,7 @@ class AddContactFragment : Fragment() {
                 this.binding.textCity.text.toString(),
                 this.binding.textArea.text.toString(),
                 this.binding.textZip.text.toString(),
-                imagePath
+                viewModel.imagePath.value
             )
             val action = AddContactFragmentDirections.actionAddContactFragmentToHomeFragment()
             findNavController().navigate(action)
@@ -172,18 +182,7 @@ class AddContactFragment : Fragment() {
             textCity.setText(contact.city, TextView.BufferType.SPANNABLE)
             textArea.setText(contact.area, TextView.BufferType.SPANNABLE)
             textZip.setText(contact.zip, TextView.BufferType.SPANNABLE)
-            contact.imagePath?.let {
-                if (it.isNotEmpty()) {
-                    val request = ImageRequest.Builder(requireContext())
-                        .data(it)
-                        .error(ContextCompat.getDrawable(requireContext(), R.drawable.ic_account))
-                        .crossfade(600)
-                        .target(createImageTarget())
-                        .build()
-                    Coil.imageLoader(requireContext()).enqueue(request)
-                    imagePath = contact.imagePath
-                }
-            }
+            viewModel.updateImagePath(contact.imagePath)
             btnSave.setOnClickListener {
                 updateContact()
             }

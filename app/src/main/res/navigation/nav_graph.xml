@@ -31,6 +31,9 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_addContactFragment_to_modalBottomSheet"
+            app:destination="@id/modalBottomSheet" />
     </fragment>
     <fragment
         android:id="@+id/contactDetailFragment"
@@ -44,4 +47,9 @@
             android:id="@+id/action_contactDetailFragment_to_addContactFragment"
             app:destination="@id/addContactFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/modalBottomSheet"
+        android:name="com.rafael.contact_list.ModalBottomSheet"
+        android:label="ModalBottomSheet"
+        tools:layout="@layout/modal_bottom_sheet_content"/>
 </navigation>

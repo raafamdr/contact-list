@@ -1,6 +1,7 @@
 package com.rafael.contact_list
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
@@ -12,6 +13,9 @@ import kotlinx.coroutines.launch
 class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
 
     val allContacts: LiveData<List<Contact>> = contactDao.getContacts().asLiveData()
+    private val _imagePath = MutableLiveData<String?>()
+    val imagePath: LiveData<String?> = _imagePath
+
     private fun insertContact(contact: Contact) {
         viewModelScope.launch {
             contactDao.insert(contact)
@@ -132,6 +136,10 @@ class ContactsViewModel(private val contactDao: ContactDao) : ViewModel() {
         }
 
         return filteredContacts
+    }
+
+    fun updateImagePath(path: String?) {
+        _imagePath.value = path
     }
 }
 

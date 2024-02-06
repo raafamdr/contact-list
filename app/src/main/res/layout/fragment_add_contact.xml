@@ -27,8 +27,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_account"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="false"
         android:scaleType="centerCrop"
@@ -40,10 +40,10 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shape_camera"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:src="@color/md_theme_primary"
         app:layout_constraintBottom_toBottomOf="@id/img_account"
         app:layout_constraintEnd_toEndOf="@id/img_account"
@@ -60,26 +60,29 @@
         app:layout_constraintTop_toTopOf="@id/shape_camera" />
 
     <ImageView
+        android:id="@+id/icon_person"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="32dp"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_person"
         app:layout_constraintBottom_toBottomOf="@id/label_first_name"
-        app:layout_constraintEnd_toStartOf="@id/label_first_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/label_first_name" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/label_first_name"
-        android:layout_width="286dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:hint="@string/first_name"
         app:errorEnabled="true"
         app:helperText="@string/required"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/icon_person"
         app:layout_constraintTop_toBottomOf="@id/img_account">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -92,7 +95,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/label_last_name"
-        android:layout_width="286dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/last_name"
@@ -111,19 +114,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
+        android:id="@+id/icon_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_phone"
         app:layout_constraintBottom_toBottomOf="@id/label_phone"
-        app:layout_constraintEnd_toStartOf="@id/label_phone"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/icon_person"
         app:layout_constraintTop_toTopOf="@id/label_phone" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/label_phone"
-        android:layout_width="286dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/phone"
@@ -142,19 +145,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
+        android:id="@+id/icon_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_location"
         app:layout_constraintBottom_toBottomOf="@id/label_address"
-        app:layout_constraintEnd_toStartOf="@id/label_address"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/icon_phone"
         app:layout_constraintTop_toTopOf="@id/label_address" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/label_address"
-        android:layout_width="286dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/address"
@@ -172,11 +175,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/label_city"
-        android:layout_width="286dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/city"
-        app:layout_constraintEnd_toEndOf="@id/label_address"
         app:layout_constraintStart_toStartOf="@id/label_address"
         app:layout_constraintTop_toBottomOf="@id/label_address">
 
@@ -190,12 +192,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/label_area"
-        android:layout_width="135dp"
+        android:layout_width="89dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:hint="@string/area"
-        app:layout_constraintStart_toStartOf="@id/label_city"
-        app:layout_constraintTop_toBottomOf="@id/label_city">
+        app:layout_constraintStart_toEndOf="@id/label_city"
+        app:layout_constraintTop_toBottomOf="@id/label_address">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_area"
@@ -207,12 +210,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/label_zip"
-        android:layout_width="135dp"
+        android:layout_width="89dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:hint="@string/zip"
-        app:layout_constraintEnd_toEndOf="@id/label_city"
-        app:layout_constraintTop_toBottomOf="@id/label_city">
+        app:layout_constraintStart_toEndOf="@id/label_area"
+        app:layout_constraintTop_toBottomOf="@id/label_address">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/text_zip"
@@ -229,8 +233,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/cancel"
-        app:layout_constraintStart_toStartOf="@id/label_area"
-        app:layout_constraintTop_toBottomOf="@id/label_area" />
+        app:layout_constraintStart_toStartOf="@id/label_city"
+        app:layout_constraintTop_toBottomOf="@id/label_city" />
 
     <Button
         android:id="@+id/btn_save"
