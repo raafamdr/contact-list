@@ -1,26 +1,19 @@
 package com.rafael.contact_list
 
-import android.content.Intent
 import android.graphics.drawable.Animatable
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.Coil
-import coil.load
 import coil.request.ImageRequest
 import coil.transition.TransitionTarget
 import com.google.android.material.textfield.TextInputEditText
@@ -52,7 +45,7 @@ class AddContactFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val id = navigationArgs.itemId
         if (id > 0) {
-            binding.topAppBar.title = getString(R.string.edit_contact)
+            binding.topAppBar.title = getString(R.string.title_edit_contact)
             viewModel.retrieveContact(id).observe(this.viewLifecycleOwner) { selectedContact ->
                 contact = selectedContact
                 bind(contact)
@@ -119,13 +112,13 @@ class AddContactFragment : Fragment() {
             )
             val action = AddContactFragmentDirections.actionAddContactFragmentToHomeFragment()
             findNavController().navigate(action)
-            Toast.makeText(requireContext(), R.string.contact_added, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.toast_contact_added, Toast.LENGTH_SHORT).show()
         } else {
             validateField(binding.labelFirstName, binding.textFirstName)
             validateField(binding.labelLastName, binding.textLastName)
             validateField(binding.labelPhone, binding.textPhone)
 
-            Toast.makeText(requireContext(), R.string.fill_all_required_fields, Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), R.string.toast_fill_all_required_fields, Toast.LENGTH_SHORT)
                 .show()
         }
     }
@@ -145,13 +138,13 @@ class AddContactFragment : Fragment() {
             )
             val action = AddContactFragmentDirections.actionAddContactFragmentToHomeFragment()
             findNavController().navigate(action)
-            Toast.makeText(requireContext(), R.string.contact_updated, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.toast_contact_updated, Toast.LENGTH_SHORT).show()
         } else {
             validateField(binding.labelFirstName, binding.textFirstName)
             validateField(binding.labelLastName, binding.textLastName)
             validateField(binding.labelPhone, binding.textPhone)
 
-            Toast.makeText(requireContext(), R.string.fill_all_required_fields, Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), R.string.toast_fill_all_required_fields, Toast.LENGTH_SHORT)
                 .show()
         }
     }
@@ -200,7 +193,7 @@ class AddContactFragment : Fragment() {
 
         override fun onError(error: Drawable?) {
             binding.imgAccount.setImageDrawable(error)
-            Toast.makeText(requireContext(), R.string.image_not_available, Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), R.string.toast_image_not_available, Toast.LENGTH_SHORT)
                 .show()
         }
     }

@@ -7,7 +7,7 @@
     tools:context=".ContactDetailFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
+        android:id="@+id/app_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/top_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
@@ -35,7 +35,7 @@
         android:src="@drawable/ic_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar"
+        app:layout_constraintTop_toBottomOf="@id/app_bar"
         app:shapeAppearance="@style/circleImageView" />
 
     <TextView
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/contact_info"
+                android:text="@string/label_contact_info"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="@color/md_theme_onSurface"
                 app:layout_constraintStart_toStartOf="parent"

@@ -13,7 +13,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.Coil
-import coil.drawable.CrossfadeDrawable
 import coil.request.ImageRequest
 import coil.transition.TransitionTarget
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -109,7 +108,7 @@ class ContactDetailFragment : Fragment() {
 
         override fun onError(error: Drawable?) {
             binding.imgUserPhoto.setImageDrawable(error)
-            Toast.makeText(requireContext(), R.string.image_not_available, Toast.LENGTH_SHORT)
+            Toast.makeText(requireContext(), R.string.toast_image_not_available, Toast.LENGTH_SHORT)
                 .show()
         }
     }
@@ -138,7 +137,7 @@ class ContactDetailFragment : Fragment() {
     private fun deleteContact() {
         viewModel.deleteContact(contact)
         findNavController().navigateUp()
-        Toast.makeText(requireContext(), R.string.contact_deleted, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), R.string.toast_contact_deleted, Toast.LENGTH_SHORT).show()
     }
 
     private fun showConfirmationDialog() {
@@ -147,8 +146,8 @@ class ContactDetailFragment : Fragment() {
             com.google.android.material.R.style.ThemeOverlay_Material3_MaterialAlertDialog_Centered
         )
             .setIcon(R.drawable.ic_delete)
-            .setTitle(resources.getString(R.string.delete_contact))
-            .setMessage(resources.getString(R.string.delete_supporting_text))
+            .setTitle(resources.getString(R.string.dialog_title_delete))
+            .setMessage(resources.getString(R.string.dialog_supporting_text_delete))
             .setNegativeButton(resources.getString(R.string.cancel)) { _, _ ->
             }
             .setPositiveButton(resources.getString(R.string.delete)) { _, _ ->

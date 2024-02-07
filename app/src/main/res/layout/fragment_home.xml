@@ -7,7 +7,7 @@
     tools:context=".HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
+        android:id="@+id/app_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,12 +15,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/top_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             app:menu="@menu/top_app_bar"
-            app:title="@string/contacts"
+            app:title="@string/app_name"
             app:titleTextColor="?attr/colorOnSurface" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -34,7 +34,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar"
+        app:layout_constraintTop_toBottomOf="@id/app_bar"
         tools:listitem="@layout/list_view_item" />
 
     <ImageView
@@ -47,7 +47,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar" />
+        app:layout_constraintTop_toBottomOf="@id/app_bar" />
 
     <TextView
         android:id="@+id/text_empty"

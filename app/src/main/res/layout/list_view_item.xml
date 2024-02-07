@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageShape"
+        android:id="@+id/shape_initial_letter"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -19,27 +19,27 @@
         app:shapeAppearance="@style/circleImageView" />
 
     <TextView
-        android:id="@+id/textInitialLetter"
+        android:id="@+id/text_initial_letter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?attr/textAppearanceTitleMedium"
         android:textColor="@color/md_theme_onPrimaryContainer"
-        app:layout_constraintBottom_toBottomOf="@id/imageShape"
-        app:layout_constraintEnd_toEndOf="@id/imageShape"
-        app:layout_constraintStart_toStartOf="@id/imageShape"
-        app:layout_constraintTop_toTopOf="@id/imageShape"
+        app:layout_constraintBottom_toBottomOf="@id/shape_initial_letter"
+        app:layout_constraintEnd_toEndOf="@id/shape_initial_letter"
+        app:layout_constraintStart_toStartOf="@id/shape_initial_letter"
+        app:layout_constraintTop_toTopOf="@id/shape_initial_letter"
         tool:text="A" />
 
     <TextView
-        android:id="@+id/contactName"
+        android:id="@+id/text_contact_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:textAppearance="?attr/textAppearanceTitleMedium"
         android:textColor="@color/md_theme_onSurface"
-        app:layout_constraintBottom_toBottomOf="@id/imageShape"
-        app:layout_constraintStart_toEndOf="@id/imageShape"
-        app:layout_constraintTop_toTopOf="@id/imageShape"
+        app:layout_constraintBottom_toBottomOf="@id/shape_initial_letter"
+        app:layout_constraintStart_toEndOf="@id/shape_initial_letter"
+        app:layout_constraintTop_toTopOf="@id/shape_initial_letter"
         tool:text="Alejandro Gómez" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

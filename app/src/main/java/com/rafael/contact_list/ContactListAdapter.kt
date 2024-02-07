@@ -29,7 +29,7 @@ class ContactListAdapter(private val onItemClicked: (Contact) -> Unit) :
         fun bind(contact: Contact) {
             binding.apply {
                 textInitialLetter.text = contact.firstName.first().toString()
-                contactName.text = root.resources.getString(
+                textContactName.text = root.resources.getString(
                     R.string.contact_name,
                     contact.firstName,
                     contact.lastName

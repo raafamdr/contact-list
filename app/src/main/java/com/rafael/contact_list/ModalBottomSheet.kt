@@ -37,7 +37,7 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.imagePath.observe(this.viewLifecycleOwner) {
-            binding.iconDelete.visibility = if (it != null) View.VISIBLE else View.GONE
+            binding.imgDelete.visibility = if (it != null) View.VISIBLE else View.GONE
         }
 
         val pickMedia =
@@ -59,7 +59,7 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
-        binding.iconDelete.setOnClickListener {
+        binding.imgDelete.setOnClickListener {
             showConfirmationDialog()
         }
     }
@@ -73,11 +73,11 @@ class ModalBottomSheet : BottomSheetDialogFragment() {
             .setNegativeButton(resources.getString(R.string.cancel)) { _, _ ->
                 dismiss()
             }
-            .setPositiveButton(resources.getString(R.string.remove)) { _, _ ->
+            .setPositiveButton(resources.getString(R.string.dialog_action_remove)) { _, _ ->
                 viewModel.updateImagePath(null)
                 Toast.makeText(
                     requireContext(),
-                    resources.getString(R.string.contact_photo_removed),
+                    resources.getString(R.string.toast_contact_photo_removed),
                     Toast.LENGTH_SHORT
                 ).show()
                 dismiss()

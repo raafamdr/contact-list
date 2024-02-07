@@ -7,7 +7,7 @@
     tools:context=".AddContactFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
+        android:id="@+id/app_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,13 +15,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/top_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             app:navigationContentDescription="@string/navigate_up"
             app:navigationIcon="@drawable/ic_close"
-            app:title="@string/save_contact"
+            app:title="@string/title_save_contact"
             app:titleTextColor="?attr/colorOnSurface" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -35,7 +35,7 @@
         android:src="@drawable/ic_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar"
+        app:layout_constraintTop_toBottomOf="@id/app_bar"
         app:shapeAppearance="@style/circleImageView" />
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -60,7 +60,7 @@
         app:layout_constraintTop_toTopOf="@id/shape_camera" />
 
     <ImageView
-        android:id="@+id/icon_person"
+        android:id="@+id/img_person"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -78,11 +78,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="@string/first_name"
+        android:hint="@string/hint_first_name"
         app:errorEnabled="true"
         app:helperText="@string/required"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/icon_person"
+        app:layout_constraintStart_toEndOf="@id/img_person"
         app:layout_constraintTop_toBottomOf="@id/img_account">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -98,7 +98,7 @@
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="@string/last_name"
+        android:hint="@string/hint_last_name"
         app:errorEnabled="true"
         app:helperText="@string/required"
         app:layout_constraintEnd_toEndOf="@id/label_first_name"
@@ -114,14 +114,14 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/icon_phone"
+        android:id="@+id/img_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_phone"
         app:layout_constraintBottom_toBottomOf="@id/label_phone"
-        app:layout_constraintStart_toStartOf="@id/icon_person"
+        app:layout_constraintStart_toStartOf="@id/img_person"
         app:layout_constraintTop_toTopOf="@id/label_phone" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -145,14 +145,14 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/icon_location"
+        android:id="@+id/img_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_location"
         app:layout_constraintBottom_toBottomOf="@id/label_address"
-        app:layout_constraintStart_toStartOf="@id/icon_phone"
+        app:layout_constraintStart_toStartOf="@id/img_phone"
         app:layout_constraintTop_toTopOf="@id/label_address" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -178,7 +178,7 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="@string/city"
+        android:hint="@string/hint_city"
         app:layout_constraintStart_toStartOf="@id/label_address"
         app:layout_constraintTop_toBottomOf="@id/label_address">
 
@@ -196,7 +196,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:hint="@string/area"
+        android:hint="@string/hint_area"
         app:layout_constraintStart_toEndOf="@id/label_city"
         app:layout_constraintTop_toBottomOf="@id/label_address">
 
@@ -214,7 +214,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:hint="@string/zip"
+        android:hint="@string/hint_zip"
         app:layout_constraintStart_toEndOf="@id/label_area"
         app:layout_constraintTop_toBottomOf="@id/label_address">
 
